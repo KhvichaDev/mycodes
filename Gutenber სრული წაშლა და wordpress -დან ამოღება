@@ -1,0 +1,37 @@
+// Disable Gutenberg editor
+function disable_gutenberg_editor() {
+    // Disable for posts
+    add_filter('use_block_editor_for_post', '__return_false', 10);
+    // Disable for post types
+    add_filter('use_block_editor_for_post_type', '__return_false', 10);
+}
+add_action('init', 'disable_gutenberg_editor');
+
+// Remove Gutenberg-related scripts and styles
+function remove_gutenberg_scripts_styles() {
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    wp_dequeue_style('wc-blocks-style'); // WooCommerce
+    wp_dequeue_script('wp-block-library');
+}
+add_action('wp_enqueue_scripts', 'remove_gutenberg_scripts_styles', 100);
+
+// Disable the Gutenberg widget block editor
+add_filter('use_widgets_block_editor', '__return_false');
+
+// Remove Gutenberg editor styles in admin
+function remove_gutenberg_admin_styles() {
+    wp_dequeue_style('wp-edit-blocks');
+}
+add_action('admin_enqueue_scripts', 'remove_gutenberg_admin_styles');
+
+// Disable the REST API Gutenberg endpoint
+add_filter('rest_endpoints', function ($endpoints) {
+    if (isset($endpoints['/wp/v2/posts'])) {
+        unset($endpoints['/wp/v2/posts']);
+    }
+    if (isset($endpoints['/wp/v2/pages'])) {
+        unset($endpoints['/wp/v2/pages']);
+    }
+    return $endpoints;
+});

@@ -1,0 +1,18 @@
+როგორ შევაჩეროთ გვერდის სკროლვა პოპაპის გახსნისას და აღვადგინოთ დახურვის შემდეგ
+
+1. css ფაილში დავწეროთ:
+
+/* Disable scrolling when .no-scroll is applied */
+.no-scroll {
+    overflow: hidden;
+}
+
+2. js ფაილში პოპაპის გახსნის ფუნქციას დავამატოთ კოდი:
+
+// Add 'no-scroll' class to disable page scrolling
+    document.body.classList.add('no-scroll');
+
+3. js ფაილში პოპაპის დახურვის ფუნქციას დავამატოთ კოდი:
+
+// Remove 'no-scroll' class to enable page scrolling
+    document.body.classList.remove('no-scroll');

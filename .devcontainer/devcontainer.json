@@ -2,7 +2,7 @@
   "name": "WordPress Dev",
   "dockerComposeFile": "docker-compose.yml",
   "service": "wordpress",
-  "workspaceFolder": "/var/www/html",
+  "workspaceFolder": "/workspaces/mycodes",
   "postCreateCommand": "chmod -R 777 /var/www/html",
   "forwardPorts": [80],
   "customizations": {
